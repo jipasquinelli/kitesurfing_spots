@@ -36,6 +36,15 @@
         <% end %>
       </dd>
 
+      <dt>Sport</dt>
+      <dd>
+        <% if @photo.sport.present? %>
+          <a href="/sports/<%= @photo.sport_id %>">
+            <%= @photo.sport.spot_id %>
+          </a>
+        <% end %>
+      </dd>
+
     </dl>
 
     <div class="btn-group btn-group-justified">
