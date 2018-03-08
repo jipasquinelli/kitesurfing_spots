@@ -136,6 +136,7 @@
         <th>User</th>
         <th>Location</th>
         <th>Spots</th>
+        <th>Sport</th>
         <th>Actions</th>
       </tr>
 
@@ -155,6 +156,13 @@
           <% if photo.spots.present? %>
             <a href="/spots/<%= photo.spots.id %>">
               <%= photo.spots.created_at %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if photo.sport.present? %>
+            <a href="/sports/<%= photo.sport.id %>">
+              <%= photo.sport.spot_id %>
             </a>
           <% end %>
         </td>
