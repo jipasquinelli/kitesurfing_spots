@@ -21,6 +21,9 @@ class Spot < ApplicationRecord
   end
   # Direct associations
 
+  has_many   :sports,
+             :dependent => :destroy
+
   has_many   :comments,
              :dependent => :destroy
 
