@@ -60,7 +60,7 @@
           Spots
         </label>
 
-        <input type="text" id="spots_id" name="spots_id" placeholder="Spots" class="form-control" value="<%= @photo.spots_id %>">
+        <%= select_tag(:spots_id, options_from_collection_for_select(Spot.all, :id, :created_at, @photo.spots_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
