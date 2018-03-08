@@ -11,7 +11,7 @@ class PhotosController < ApplicationController
 
   def index
     @q = Photo.ransack(params[:q])
-    @photos = @q.result(:distinct => true).includes(:user, :likes, :comments, :spots, :fans).page(params[:page]).per(10)
+    @photos = @q.result(:distinct => true).includes(:user, :likes, :comments, :spots, :sport, :fans).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@photos.where.not(:location_latitude => nil)) do |photo, marker|
       marker.lat photo.location_latitude
       marker.lng photo.location_longitude
@@ -43,6 +43,7 @@ class PhotosController < ApplicationController
     @photo.user_id = params[:user_id]
     @photo.location = params[:location]
     @photo.spots_id = params[:spots_id]
+    @photo.sport_id = params[:sport_id]
 
     save_status = @photo.save
 
@@ -74,6 +75,7 @@ class PhotosController < ApplicationController
     @photo.user_id = params[:user_id]
     @photo.location = params[:location]
     @photo.spots_id = params[:spots_id]
+    @photo.sport_id = params[:sport_id]
 
     save_status = @photo.save
 

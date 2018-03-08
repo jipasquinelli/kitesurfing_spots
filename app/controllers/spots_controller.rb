@@ -1,7 +1,7 @@
 class SpotsController < ApplicationController
   def index
     @q = Spot.ransack(params[:q])
-    @spots = @q.result(:distinct => true).includes(:photos, :likes, :comments, :users).page(params[:page]).per(10)
+    @spots = @q.result(:distinct => true).includes(:photos, :likes, :comments, :sports, :users).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@spots.where.not(:location_latitude => nil)) do |spot, marker|
       marker.lat spot.location_latitude
       marker.lng spot.location_longitude
@@ -12,6 +12,7 @@ class SpotsController < ApplicationController
   end
 
   def show
+    @sport = Sport.new
     @comment = Comment.new
     @like = Like.new
     @photo = Photo.new
