@@ -103,6 +103,15 @@
         <%= select_tag(:spots_id, options_from_collection_for_select(Spot.all, :id, :created_at), :class => "form-control") %>
       </div>
 
+      <!-- Label and input for sport_id -->
+      <div class="form-group">
+        <label for="sport_id" class="control-label">
+          Sport
+        </label>
+
+        <%= select_tag(:sport_id, options_from_collection_for_select(Sport.all, :id, :spot_id), :class => "form-control") %>
+      </div>
+
       <button class="btn btn-block btn-success">
         Create Photo
       </button>
@@ -228,6 +237,60 @@
 
       <button class="btn btn-block btn-success">
         Create Comment
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Spot has many sports -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Sports
+      </li>
+
+      <% @spot.sports.each do |sport| %>
+        <li class="list-group-item">
+          <a href="/sports/<%= sport.id %>">
+            <%= sport.spot_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/sports/<%= sport.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/sports/<%= sport.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_sport/<%= sport.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_sport" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for spot_id -->
+      <input type="hidden" name="spot_id" value="<%= @spot.id %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Sport
       </button>
     </form>
       </li>
