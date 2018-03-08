@@ -6,6 +6,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.integer :user_id
       t.string :location
       t.integer :spots_id
+      t.integer :sport_id
 
       t.timestamps
 

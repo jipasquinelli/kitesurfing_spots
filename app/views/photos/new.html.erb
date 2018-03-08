@@ -57,6 +57,15 @@
         <%= select_tag(:spots_id, options_from_collection_for_select(Spot.all, :id, :created_at, @photo.spots_id), :class => "form-control") %>
       </div>
 
+      <!-- Label and input for sport_id -->
+      <div class="form-group">
+        <label for="sport_id" class="control-label">
+          Sport
+        </label>
+
+        <%= select_tag(:sport_id, options_from_collection_for_select(Sport.all, :id, :spot_id, @photo.sport_id), :class => "form-control") %>
+      </div>
+
       <button class="btn btn-success">
         Create Photo
       </button>

@@ -23,6 +23,8 @@ class Photo < ApplicationRecord
 
   # Direct associations
 
+  belongs_to :sport
+
   belongs_to :spots,
              :class_name => "Spot",
              :counter_cache => true
