@@ -30,9 +30,21 @@
       <tr>
         <td><%= photo.caption %></td>
         <td><img src='<%= photo.image %>' class='img-responsive'></td>
-        <td><%= photo.user.username %></td>
+        <td>
+          <% if photo.user.present? %>
+            <a href="/users/<%= photo.user.id %>">
+              <%= photo.user.username %>
+            </a>
+          <% end %>
+        </td>
         <td><%= photo.location %></td>
-        <td><%= photo.spots.created_at %></td>
+        <td>
+          <% if photo.spots.present? %>
+            <a href="/spots/<%= photo.spots.id %>">
+              <%= photo.spots.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
           
